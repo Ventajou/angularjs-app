@@ -1,7 +1,7 @@
 import { StateProvider } from '@uirouter/angularjs';
 import { ILocationProvider } from 'angular';
-import { App } from "~/app";
-import { Layout } from '~/layout/layout.component';
+import { App } from "~/app/module";
+import * as Layout from '~/layout';
 
 App.inject('$stateProvider', '$locationProvider').config((
   $stateProvider: StateProvider,
@@ -12,6 +12,6 @@ App.inject('$stateProvider', '$locationProvider').config((
     .state({
       name: 'layout',
       url: '/',
-      component: Layout.$componentName
+      component: Layout.Components.Layout.$componentName
     });
 });

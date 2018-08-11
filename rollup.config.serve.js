@@ -9,7 +9,8 @@ baseConfig.plugins = baseConfig.plugins.concat([
     port: 3000
   }),
   livereload({
-    watch: ['dist', 'static']
+    watch: ['dist', 'static'],
+    applyCSSLive: true
   })
 ]);
 

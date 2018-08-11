@@ -1,3 +1,1 @@
-import '@uirouter/core';
-import '@uirouter/angularjs';
-import '~/routes';
+import '~/app';
