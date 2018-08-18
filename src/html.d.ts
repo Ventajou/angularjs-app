@@ -1,4 +1,4 @@
 declare module '*.html' {
-  const value: string;
-  export default value
+  function template(data?: any): string;
+  export default template
 }

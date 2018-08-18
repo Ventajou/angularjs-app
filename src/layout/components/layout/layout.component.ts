@@ -5,12 +5,8 @@ import { IRootElementService } from 'angular';
 
 @LayoutModule
   .inject('$element')
-  .component({
-    template
-  })
+  .component({ template: template(styles) })
 export class Layout {
-  styles = styles;
-
   constructor(
     $element: IRootElementService
   ) {

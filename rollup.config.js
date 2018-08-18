@@ -38,7 +38,7 @@ export default {
       writeDefinitions: true,
       extensions: ['.pcss']
     }),
-    posthtml(),
+    posthtml({ template: true }),
     typescript({ typescript: require('typescript') }),
     resolve({
       jsnext: true,

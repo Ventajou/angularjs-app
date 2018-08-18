@@ -5,10 +5,8 @@ import styles from './side-bar.component.pcss';
 
 @LayoutModule
   .inject('$element')
-  .component({ template })
+  .component({ template: template() })
 export class SideBar {
-  styles = styles;
-
   constructor(
     $element: IRootElementService
   ) {

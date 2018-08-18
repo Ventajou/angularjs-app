@@ -5,10 +5,8 @@ import styles from './header.component.pcss';
 
 @LayoutModule
   .inject('$element')
-  .component({ template })
+  .component({ template: template(styles) })
 export class Header {
-  styles = styles;
-
   constructor(
     $element: IRootElementService
   ) {
