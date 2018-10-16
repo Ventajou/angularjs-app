@@ -1,4 +1,4 @@
-import Module from '@rightscale/ui-angular-decorators';
+import Module from '~/decorators';
 import { LayoutModule } from '~/layout';
 
 export const App = new Module('test', ['ui.router', LayoutModule.name]);

@@ -7,11 +7,8 @@ import postcss from 'rollup-plugin-postcss-modules';
 import autoprefixer from 'autoprefixer';
 import postcssNesting from 'postcss-nesting';
 import atImport from 'postcss-import';
-// import posthtml from 'rollup-plugin-posthtml';
 import posthtml from 'rollup-plugin-posthtml-template';
-import posthtmlCssModules from 'posthtml-css-modules';
-import { uglify } from 'rollup-plugin-uglify';
-import { minify } from 'uglify-es';
+import { terser } from 'rollup-plugin-terser';
 import config from './package.json';
 
 // Build the list of external modules from package.json
@@ -27,7 +24,9 @@ export default {
     sourcemap: true,
     globals: {
       angular: 'angular',
-      tslib: 'tslib'
+      tslib: 'tslib',
+      react: 'React',
+      'react-dom': 'ReactDOM'
     }
   },
   plugins: [
@@ -39,15 +38,20 @@ export default {
       extensions: ['.pcss']
     }),
     posthtml({ template: true }),
-    typescript({ typescript: require('typescript') }),
     resolve({
       jsnext: true,
+      main: true,
       preferBuiltins: false,
       browser: true
     }),
     json(),
-    commonjs(),
-    uglify({ mangle: { keep_fnames: true }, compress: false, keep_fnames: true }, minify),
+    commonjs({
+      include: 'node_modules/**',
+      exclude: [],
+      extensions: ['.js']
+    }),
+    typescript({ typescript: require('typescript'), exclude: ['node_modules/**'] }),
+    terser({ mangle: { keep_fnames: true }, compress: false, keep_fnames: true }),
     sourcemaps()
   ]
 }

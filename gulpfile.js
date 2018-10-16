@@ -14,7 +14,9 @@ gulp.task('clean', () =>
 const sources = [
   'node_modules/angular/angular.js',
   'node_modules/@uirouter/core/_bundles/ui-router-core.js',
-  'node_modules/@uirouter/angularjs/release/ui-router-angularjs.js'
+  'node_modules/@uirouter/angularjs/release/ui-router-angularjs.js',
+  'node_modules/react/umd/react.development.js',
+  'node_modules/react-dom/umd/react-dom.development.js'
 ]
 
 // Copy dependencies to ./public/libs/

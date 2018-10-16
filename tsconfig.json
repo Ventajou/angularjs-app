@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "es2015",
+    "module": "esnext",
     "target": "es2017",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -12,10 +12,14 @@
     "outDir": "./dist",
     "importHelpers": true,
     "baseUrl": ".",
+    "jsx": "react",
     "paths": {
       "~/*": [
         "src/*"
       ]
     }
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

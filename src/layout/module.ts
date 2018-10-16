@@ -1,3 +1,3 @@
-import Module from '@rightscale/ui-angular-decorators';
+import Module from '~/decorators';
 
 export const LayoutModule = new Module('layout', []);
