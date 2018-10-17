@@ -1,7 +1,9 @@
+import * as React from 'react';
 import * as angular from 'angular';
 import { Injectable } from './injectable';
 import { Options } from './options';
 import * as Types from './types';
+import { react2angular } from 'react2angular';
 
 /**
  * Wraps the Angular module and provides utility decorator functions
@@ -29,7 +31,23 @@ export class Module {
 
     // Create the angular module and keep a reference to it
     this.module = this.options.angular.module(name, dependencies || []);
+    this.module.run(['$injector', (injector: ng.auto.IInjectorService) => {
+      console.log('getting injector at module level');
+      // this.injector = injector;
+    }]);
   }
+
+  reactComponent = (target: React.ComponentClass) => {
+    const componentName = this.options.prefix + target.name.replace(/\$\$\d+$/, '');
+
+    Object.defineProperty(target, '$componentName', {
+      enumerable: true,
+      get: () => componentName,
+      set: () => { throw Error('The property [$componentName] is read-only'); }
+    });
+
+    this.module.component(componentName, react2angular(target));
+  };
 
   /**
    * Registers a class as an Angular service.

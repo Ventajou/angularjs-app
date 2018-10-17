@@ -1,5 +1,6 @@
 import { Options } from './options';
 import * as Types from './types';
+import { angular2react } from 'angular2react';
 
 /**
  * A stricter form of the service provider class as defined in the Angular typings
@@ -11,7 +12,7 @@ export interface ServiceProvider<T> extends ng.IServiceProvider {
 }
 
 export interface ServiceProviderClass<T> extends ng.IServiceProviderClass {
-  new (...args: any[]): ServiceProvider<T>;
+  new(...args: any[]): ServiceProvider<T>;
 }
 
 /**
@@ -28,7 +29,16 @@ export class Injectable {
   ) {
     module.run(['$injector', (injector: ng.auto.IInjectorService) => {
       this.injector = injector;
+      console.log('getting injector at injectable level', injector);
     }]);
+  }
+
+  toReact = (target: ng.IComponentOptions) => {
+    const self = this;
+    return angular2react('rsView', target, { get: (dep: string, foo?: string) => {
+      console.log('toreact', this.injector, self.injector, typeof this);
+      return this.injector.get(dep);
+     } } as any);
   }
 
   /**
